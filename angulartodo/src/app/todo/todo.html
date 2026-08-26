@@ -1,1 +1,35 @@
-<p>todo works!</p>
+<section class="bg-white p-6 rounded-lg shadow-md">
+    <header class="text-2xl font-bold mb-4">
+        <h1 class="text-2xl font-bold mb-4">MY TODO LIST</h1>
+    </header>
+
+    <div class="flex gap-2 mb-6">
+        <input #newTask type="text" placeholder="What needs to be done?" class="border p-2 rounded w-full">
+
+        <button (click)="addTask(newTask.value, newTask)"
+            class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">ADD</button>
+    </div>
+
+
+    @if (task.length === 0) {
+    <p class="text-gray-500 italic p-4 text-center">Great job! You are done with your tasks</p>
+    }
+
+    <ul class="space-y-2">
+
+        @for (t of task; track t.name){
+        <li class="flex items-center gap-3 p-3 border rounded hover:bg-gray-50">
+
+            <input type="checkbox" [checked]="t.done" (change)="changeStatus(t)" class="w-5 h-5 cursor-pointer">
+
+            <span [class.line-through]="t.done" [class.text-gray-400]="t.done" class="text-lg">{{t.name}}</span>
+
+            <button (click)="removeTask(t)"
+                class="ml-auto text-red-500 hover:text-red-700 font-bold px-2 text-xl">X</button>
+        </li>
+
+        }
+    </ul>
+
+
+</section>

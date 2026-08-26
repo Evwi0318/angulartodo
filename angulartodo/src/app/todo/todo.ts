@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class Todo {
   task = [
     { name: 'Börja med inlämningen', done: true },
-    { namn: 'Göra klart Angular-koden', done: false },
+    { name: 'Göra klart Angular-koden', done: false },
   ];
 
   addTask(name: string, inputElement: HTMLInputElement) {
@@ -22,5 +22,9 @@ export class Todo {
 
   changeStatus(task: any) {
     task.done = !task.done;
+  }
+
+  removeTask(taskToRemove: any) {
+    this.task = this.task.filter((t) => t !== taskToRemove);
   }
 }
